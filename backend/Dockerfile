@@ -23,3 +23,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+EXPOSE 80
+
+STOPSIGNAL SIGTERM
+
+CMD ["nginx", "-g", "daemon off;"]
