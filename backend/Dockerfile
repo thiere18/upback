@@ -5,15 +5,14 @@ RUN apt update -y \
     && apt install nginx -y \
     && apt-get install software-properties-common -y \
     && add-apt-repository ppa:certbot/certbot -y \
-    && apt-get update -y \
+    # && apt-get update -y \
     && apt-get install python-certbot-nginx -y \
     && apt-get clean
 
 RUN mkdir /app
 WORKDIR /app
 
-RUN apt update && \
-    apt install -y postgresql-client
+RUN apt install -y postgresql-client
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
