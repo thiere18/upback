@@ -12,6 +12,7 @@ class UserBase(BaseModel):
     role: t.Optional[str] = "user"
 
 
+
 class UserOut(UserBase):
     pass
 
