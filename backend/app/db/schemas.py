@@ -10,6 +10,13 @@ class UserBase(BaseModel):
     first_name: str = None
     last_name: str = None
     role: t.Optional[str] = "user"
+    restricted_areas: str
+    permitted_areas: str
+    restricted_sources: str
+    permitted_sources: str
+    restricted_tags: str
+    permitted_tags: str
+    
 
 
 
@@ -45,4 +52,4 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     email: str = None
-    permissions: str = "user"
+    permissions: str = "normal"
