@@ -9,7 +9,7 @@ services:
   #     - 443:443
   #   depends_on:
   #     - backend
-    #   # - frontend
+  #     # - frontend
 
   redis:
     image: redis
@@ -27,6 +27,16 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data:cached
 
+  # pgadmin:
+  #   container_name: pgadmin
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     - PGADMIN_DEFAULT_EMAIL=admin@example.com
+  #     - PGADMIN_DEFAULT_PASSWORD=password
+  #   ports:
+  #     - 5050:80
+  #   depends_on:
+  #     - postgres
   worker:
     build:
       context: backend
@@ -45,14 +55,14 @@ services:
     build:
       context: backend
       dockerfile: Dockerfile
-    command: gunicorn app.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8888   
+    command: gunicorn app.main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8888 
     ports:
       - 80:80
       - 443:443
     volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./backend:/app/:cached
       - ./.docker/.ipython:/root/.ipython:cached
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
 
     environment:
       PYTHONPATH: .

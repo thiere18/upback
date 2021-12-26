@@ -17,12 +17,12 @@ def init() -> None:
             password="password",
             is_active=True,
             role="admin",
-            restricted_areas="200 34 3",
-            permitted_areas="34 44",
-            restricted_sources=" 34 455 677",
-            permitted_sources="3456 7788 ",
-            restricted_tags="43",
-            permitted_tags="444 445 5"
+            # restricted_areas="200 34 3",
+            # permitted_areas="34 44",
+            # restricted_sources=" 34 455 677",
+            # permitted_sources="3456 7788 ",
+            # restricted_tags="43",
+            # permitted_tags="444 445 5"
         ),
     )
 

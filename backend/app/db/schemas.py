@@ -10,12 +10,12 @@ class UserBase(BaseModel):
     first_name: str = None
     last_name: str = None
     role: t.Optional[str] = "user"
-    restricted_areas: str
-    permitted_areas: str
-    restricted_sources: str
-    permitted_sources: str
-    restricted_tags: str
-    permitted_tags: str
+    restricted_areas: str= None
+    permitted_areas: str= None
+    restricted_sources: str= None
+    permitted_sources: str= None
+    restricted_tags: str= None
+    permitted_tags: str= None
     
 
 
