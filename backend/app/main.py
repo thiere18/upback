@@ -19,7 +19,7 @@ from app import tasks
 
 
 app = FastAPI(
-    title=config.PROJECT_NAME, docs_url="/api/docs", openapi_url="/api"
+    title=config.PROJECT_NAME, docs_url="/api/v1/docs", openapi_url="/api"
 )
 
 
