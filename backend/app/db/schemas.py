@@ -1,6 +1,16 @@
+import json
 from pydantic import BaseModel
 import typing as t
 
+from pydantic.types import Json
+from sqlalchemy.dialects.postgresql.json import JSONB
+
+# f={
+#     "areas":t.List[int],
+#     "sources":t.List[int],
+#     "tags":t.List[str]
+    
+# }
 
 class UserBase(BaseModel):
     username: str
@@ -10,13 +20,10 @@ class UserBase(BaseModel):
     first_name: str = None
     last_name: str = None
     role: t.Optional[str] = "user"
-    restricted_areas: str= None
-    permitted_areas: str= None
-    restricted_sources: str= None
-    permitted_sources: str= None
-    restricted_tags: str= None
-    permitted_tags: str= None
-    
+    permitted: t.Dict[t.Any, t.Any] 
+    restricted: t.Dict[t.Any, t.Any]
+    # class Config:
+    #     orm_mode = True
 
 
 

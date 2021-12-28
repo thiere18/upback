@@ -42,6 +42,8 @@ def create_user(db: Session, user: schemas.UserCreate):
         last_name=user.last_name,
         email=user.email,
         is_active=user.is_active,
+        permitted=user.permitted,
+        restricted=user.restricted,
         hashed_password=hashed_password,
         role=user.role
     )
