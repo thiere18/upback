@@ -104,11 +104,20 @@ def test_user(test_db) -> models.User:
     """
     Make a test user in the database
     """
-
+    data={
+                "sources": "12",
+                "areas": "12",
+                "tags":  "no-go"
+            }
     user = models.User(
+        
+        username="test",
         email="fake@email.com",
         hashed_password=get_password_hash(),
         is_active=True,
+        permitted=data,
+        role="normal",
+        restricted=data,
     )
     test_db.add(user)
     test_db.commit()
@@ -120,11 +129,18 @@ def test_superuser(test_db) -> models.User:
     """
     Superuser for testing
     """
-
+    data={
+                "sources": "12",
+                "areas": "12",
+                "tags":  "no-go"
+            }
     user = models.User(
+        username="admin",
         email="fakeadmin@email.com",
         hashed_password=get_password_hash(),
-        is_superuser=True,
+        role="admin",
+        permitted=data,
+        restricted=data,
     )
     test_db.add(user)
     test_db.commit()

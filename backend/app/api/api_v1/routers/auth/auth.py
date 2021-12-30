@@ -33,25 +33,25 @@ async def login(
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@r.post("/signup")
-async def signup(
-    db=Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()
-):
-    user = sign_up_new_user(db, form_data.username, form_data.password)
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_409_CONFLICT,
-            detail="Account already exists",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+# @r.post("/signup")
+# async def signup(
+#     db=Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()
+# ):
+#     user = sign_up_new_user(db, form_data.username, form_data.password)
+#     if not user:
+#         raise HTTPException(
+#             status_code=status.HTTP_409_CONFLICT,
+#             detail="Account already exists",
+#             headers={"WWW-Authenticate": "Bearer"},
+#         )
 
-    access_token_expires = timedelta(
-        minutes=security.ACCESS_TOKEN_EXPIRE_MINUTES
-    )
-    permissions = user.role 
-    access_token = security.create_access_token(
-        data={"sub": user.email, "permissions": permissions},
-        expires_delta=access_token_expires,
-    )
+#     access_token_expires = timedelta(
+#         minutes=security.ACCESS_TOKEN_EXPIRE_MINUTES
+#     )
+#     permissions = user.role 
+#     access_token = security.create_access_token(
+#         data={"sub": user.email, "permissions": permissions},
+#         expires_delta=access_token_expires,
+#     )
 
-    return {"access_token": access_token, "token_type": "bearer"}
+#     return {"access_token": access_token, "token_type": "bearer"}

@@ -14,7 +14,6 @@ from app.core.auth import get_current_active_user, get_current_active_superuser
 
 users_router = r = APIRouter()
 
-
 @r.get(
     "/users",
     response_model=t.List[User],
