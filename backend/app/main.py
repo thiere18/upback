@@ -7,6 +7,8 @@ from app.api.api_v1.routers.users.users import users_router
 from app.api.api_v1.routers.auth.auth import auth_router
 from app.api.api_v1.routers.area.area import area_router
 from app.api.api_v1.routers.live.live import live_router
+from app.api.api_v1.routers.role.role import role_router
+
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -69,7 +71,7 @@ app.include_router(
 app.include_router(auth_router, prefix="/api", tags=["auth"])
 app.include_router(area_router, prefix="/api" , tags=["area"])
 app.include_router(live_router, prefix="/api", tags=["live"])
-
+app.include_router(role_router, prefix="/api", tags=["role"])
 # if __name__ == "__main__":
 #     uvicorn.run("main:app", host="0.0.0.0", reload=True, port=8888,workers=4)
     

@@ -3,11 +3,11 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from datetime import timedelta
 
 from app.db.session import get_db
+from app.db.crud import get_role_user
 from app.core import security
 from app.core.auth import authenticate_user, sign_up_new_user
-
+from app.db import models , schemas
 auth_router = r = APIRouter()
-
 
 @r.post("/token")
 async def login(
@@ -24,7 +24,7 @@ async def login(
     access_token_expires = timedelta(
         minutes=security.ACCESS_TOKEN_EXPIRE_MINUTES
     )
-    permissions = user.role
+    permissions=get_role_user(db,user.role_id)
     access_token = security.create_access_token(
         data={"sub": user.email, "permissions": permissions},
         expires_delta=access_token_expires,

@@ -12,6 +12,8 @@ from sqlalchemy.dialects.postgresql.json import JSONB
     
 # }
 
+class Role(BaseModel):
+    name: str
 class UserBase(BaseModel):
     username: str
     email: str
@@ -22,15 +24,29 @@ class UserBase(BaseModel):
     role: t.Optional[str] = "user"
     permitted: t.Dict[t.Any, t.Any] 
     restricted: t.Dict[t.Any, t.Any]
+    role_id:int
+    
     # class Config:
     #     orm_mode = True
 
 
 
 class UserOut(UserBase):
+    class Config:
+        orm_mode= True
     pass
 
 
+class RoleOut(BaseModel):
+    id: int
+    name: str
+    # users:t.List[UserOut]
+    class Config:
+        orm_mode = True
+        
+class RoleEdit(Role):
+    pass 
+    
 class UserCreate(UserBase):
     password: str
 

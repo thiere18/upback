@@ -29,11 +29,21 @@ def upgrade():
         sa.Column("is_active", sa.Boolean, nullable=False),
         sa.Column("permitted",sa.JSON,),
         sa.Column("restricted",sa.JSON),
- 
         # sa.Column("is_superuser", sa.Boolean, nullable=False),
-        sa.Column("role", sa.String(100),nullable=False,server_default=sa.text('user'),),
+        sa.Column("role_id", sa.Integer,nullable=False),
     )
+    op.create_table(
+        "role",
+        sa.Column("id", sa.Integer, primary_key=True),
+        sa.Column("name", sa.String(100),nullable=False),
+        # sa.Column("is_superuser", sa.Boolean, nullable=False),
+        sa.UniqueConstraint('name'),
+    )
+
+    op.create_foreign_key('user_role_fk',source_table='user',referent_table="role",local_cols=[
+        'role_id'],remote_cols=['id'], ondelete="CASCADE")
 
 
 def downgrade():
+    op.drop_table("role")
     op.drop_table("user")
