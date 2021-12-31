@@ -9,7 +9,7 @@ from app.db.crud import (
     delete_role,
     edit_role,
 )
-from app.db.schemas import UserCreate, UserEdit, User, UserOut ,Role, RoleOut,RoleEdit
+from app.db.schemas import Role, RoleOut,RoleEdit
 from app.core.auth import get_current_active_user, get_current_active_superuser
 
 role_router = r = APIRouter()
@@ -18,8 +18,6 @@ role_router = r = APIRouter()
     "/roles",
     response_model=t.List[RoleOut],
     response_model_exclude_none=True,
-
-
 )
 async def role_list(
     response: Response,

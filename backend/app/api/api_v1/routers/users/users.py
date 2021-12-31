@@ -34,7 +34,6 @@ async def users_list(
     response.headers["Content-Range"] = f"0-9/{len(users)}"
     response.headers['X-Total-Count'] = '30' 
     response.headers['Access-Control-Expose-Headers'] = 'Content-Range'
-
     return users
 
 

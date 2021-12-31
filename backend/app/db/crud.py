@@ -96,7 +96,7 @@ def get_role(db: Session, role_id: int):
 def get_roles(
     db: Session, skip: int = 0, limit: int = 100
 ) -> t.List[schemas.RoleOut]:
-    return db.query(models.Role).offset(skip).limit(limit).all()
+    return db.query(models.Role).all()
 
 
 

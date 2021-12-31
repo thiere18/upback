@@ -21,7 +21,6 @@ class UserBase(BaseModel):
     # is_superuser: bool = False
     first_name: str = None
     last_name: str = None
-    role: t.Optional[str] = "user"
     permitted: t.Dict[t.Any, t.Any] 
     restricted: t.Dict[t.Any, t.Any]
     role_id:int
@@ -40,7 +39,7 @@ class UserOut(UserBase):
 class RoleOut(BaseModel):
     id: int
     name: str
-    # users:t.List[UserOut]
+    users:t.List[UserOut]
     class Config:
         orm_mode = True
         

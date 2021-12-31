@@ -71,7 +71,7 @@ app.include_router(
 app.include_router(auth_router, prefix="/api", tags=["auth"])
 app.include_router(area_router, prefix="/api" , tags=["area"])
 app.include_router(live_router, prefix="/api", tags=["live"])
-app.include_router(role_router, prefix="/api", tags=["role"])
+app.include_router(role_router, prefix="/api/v1", tags=["roles"])
 # if __name__ == "__main__":
 #     uvicorn.run("main:app", host="0.0.0.0", reload=True, port=8888,workers=4)
     
