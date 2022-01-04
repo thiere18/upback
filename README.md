@@ -39,6 +39,35 @@ docker-compose run --rm backend alembic upgrade head
 
 And navigate to http://localhost:8000
 
+## SSL CERTIFICATION
+
+you need to locate the api docker image by running
+```bash
+docker container ls
+
+```
+```bash
+docker exec -it  <backend_container> bash
+```
+inside run:
+```bash 
+certbot --nginx -d yourdocker.com -d www.yourdomain.com
+```
+you'll folllow instruction and the ssl certificate 
+should activate
+
+quit the container terminal
+
+run 
+```bash 
+git restore .
+```
+if you make new changes you only need to restart the container and reactivate the ssl certification
+
+For auto renew run 
+```
+certbot --dry-run
+```
 
 
 ### Rebuilding containers:

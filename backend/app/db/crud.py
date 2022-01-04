@@ -1,4 +1,4 @@
-from fastapi import HTTPException, status
+from fastapi import HTTPException, status,Depends
 from sqlalchemy.orm import Session
 import typing as t
 
@@ -144,6 +144,6 @@ def delete_role(db: Session, role_id: int):
     return "success"
 
 
-def get_role_user(db: Session, role_id: int):
+def get_role_user( role_id: int,db: Session ):
     role= db.query(models.Role).filter(models.Role.id == role_id).first()
     return role.name

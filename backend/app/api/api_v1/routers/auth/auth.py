@@ -24,7 +24,7 @@ async def login(
     access_token_expires = timedelta(
         minutes=security.ACCESS_TOKEN_EXPIRE_MINUTES
     )
-    permissions=get_role_user(db,user.role_id)
+    permissions=get_role_user(user.role_id,db)
     access_token = security.create_access_token(
         data={"sub": user.email, "permissions": permissions},
         expires_delta=access_token_expires,
